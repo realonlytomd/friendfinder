@@ -31,8 +31,9 @@ module.exports = function(app) {
 		console.log(friendsData[1].photo);
 		//console.log(friendsData[1].scores);
 
-		// My currentUser.scores is posted here, and I know it needs to be converted by JSON.parse
-		// But I have a weird extra[] in the key name scores
+		// My currentUser.scores is posted here, and I know it needs to be converted to integers
+		// I've looked at JSON.parse, the array.map() function, etc.  
+		// But I have a weird extra[] in the key name scores...
 
 		// MOVING ON....
 
