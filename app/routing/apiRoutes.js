@@ -19,6 +19,8 @@ module.exports = function(app) {
 // this takes the data from the survey and pushes it into friendsData
 	app.post("/api/friends", function(req, res) {
 
+		console.log(req.body);
+
 		friendsData.push(req.body);
 		console.log("In POST");
 		console.log(friendsData);
@@ -27,7 +29,12 @@ module.exports = function(app) {
 		console.log(friendsData[0].scores);
 		console.log(friendsData[1].name);
 		console.log(friendsData[1].photo);
-		//console.log(friendsData[1].scores[]);
+		//console.log(friendsData[1].scores);
+
+		// My currentUser.scores is posted here, and I know it needs to be converted by JSON.parse
+		// But I have a weird extra[] in the key name scores
+
+		// MOVING ON....
 
 		// compare the scores of the friends list with the current user
 		// the current user is the last index of the friendsData array (.length)
@@ -37,12 +44,13 @@ module.exports = function(app) {
 		// set up 2 variables as arrays
 		// the following is commented out to allow the program to run without errors. My currentUser 
 		// array is not defined correctly at present
-		// var difference = [];
-		// var totalDifference = [];
+
+		var difference = [];
+		var totalDifference = [];
 
 		// for (var i = 0; i < (friendsData.length  - 1); i++) {
 
-		// 	for (var j = 0; j < 5; j++) {
+		// 	for (var j = 0; j < scores.length; j++) {
 
 		// 		difference[j] = friendsData[i].scores[j] - friendsData[friendsData.length].scores[j];
 		// 		// get the absolute value 
@@ -51,21 +59,36 @@ module.exports = function(app) {
 		// 		// then add the differences together for each friend in turn
 
 		// 		totalDifference[i] += difference[j];
+				
 		// 	}
-
-		// }
-
-		// // now we have a totalDifference number for each friend in the array
-		// // so, use a compare function to sort the totalDifferences in numerical order
-		// function sortOrder() {
-  //   		totalDifference.sort(function(a, b){return a - b});
+				
   //   	}
 
-  //   	sortOrder();
+  //   	// now we have a totalDifference number for each corresponding friend in the friendsData array
 
-    	//now, totalDifference[0] is the most compatible friend!
+  //   	// we can find the lowest number using Math.min
 
-    	// it must be displayed to the current user.  I have not been able to decipher modals,
+		// function myArrayMin(arr) {
+		// 	return Math.min.apply(null, arr);
+		// }
+
+		// var lowestNumber = myArrayMin(totalDifference);
+
+		// // then use an if statement to find the corresponding index in the friendsData array.
+		// for (var i = 0; i < friendsData.length; i++) {
+
+		// 	if totalDifference[i] = lowestNumber {
+		// 		var resultIndex = i;
+		// 	}
+		// }
+		// // ---------------------------------------------------------
+		// // Our winning friend is friendsData[resultIndex]!!!!!
+		// //----------------------------------------------------------
+
+		// console.log(friendsData[resultIndex].name);
+		// console.log(friendsData[resultIndex].photo);
+
+    	// they must be displayed to the current user.  I have not been able to decipher modals,
     	// so far. So, that is left to be done.
 
 	});
