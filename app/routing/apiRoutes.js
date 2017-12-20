@@ -35,31 +35,33 @@ module.exports = function(app) {
 		// of each friend (minus the last one - the current user), ... a nested for loop.
 
 		// set up 2 variables as arrays
-		var difference = [];
-		var totalDifference = [];
+		// the following is commented out to allow the program to run without errors. My currentUser 
+		// array is not defined correctly at present
+		// var difference = [];
+		// var totalDifference = [];
 
-		for (var i = 0; i < (friendsData.length  - 1); i++) {
+		// for (var i = 0; i < (friendsData.length  - 1); i++) {
 
-			for (var j = 0; j < 5; j++) {
+		// 	for (var j = 0; j < 5; j++) {
 
-				difference[j] = friendsData[i].scores[j] - friendsData[friendsData.length].scores[j];
-				// get the absolute value 
-				difference[j] = Math.abs(difference[j]);
+		// 		difference[j] = friendsData[i].scores[j] - friendsData[friendsData.length].scores[j];
+		// 		// get the absolute value 
+		// 		difference[j] = Math.abs(difference[j]);
 
-				// then add the differences together for each friend in turn
+		// 		// then add the differences together for each friend in turn
 
-				totalDifference[i] += difference[j];
-			}
+		// 		totalDifference[i] += difference[j];
+		// 	}
 
-		}
+		// }
 
-		// now we have a totalDifference number for each friend in the array
-		// so, use a compare function to sort the totalDifferences in numerical order
-		function sortOrder() {
-    		totalDifference.sort(function(a, b){return a - b});
-    	}
+		// // now we have a totalDifference number for each friend in the array
+		// // so, use a compare function to sort the totalDifferences in numerical order
+		// function sortOrder() {
+  //   		totalDifference.sort(function(a, b){return a - b});
+  //   	}
 
-    	sortOrder();
+  //   	sortOrder();
 
     	//now, totalDifference[0] is the most compatible friend!
 
