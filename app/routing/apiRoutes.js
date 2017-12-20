@@ -29,13 +29,42 @@ module.exports = function(app) {
 		console.log(friendsData[1].photo);
 		//console.log(friendsData[1].scores[]);
 
-		// compare the scores if the friends list with the current user
+		// compare the scores of the friends list with the current user
+		// the current user is the last index of the friendsData array (.length)
+		// so the 5 values of the scores are looped through for each array of scores
+		// of each friend (minus the last one - the current user), ... a nested for loop.
 
-		for (var i = 0; i < friendsData.length; i++) {
+		// set up 2 variables as arrays
+		var difference = [];
+		var totalDifference = [];
 
-			friendsData[i].scores
+		for (var i = 0; i < (friendsData.length  - 1); i++) {
+
+			for (var j = 0; j < 5; j++) {
+
+				difference[j] = friendsData[i].scores[j] - friendsData[friendsData.length].scores[j];
+				// get the absolute value 
+				difference[j] = Math.abs(difference[j]);
+
+				// then add the differences together for each friend in turn
+
+				totalDifference[i] += difference[j];
+			}
 
 		}
+
+		// now we have a totalDifference number for each friend in the array
+		// so, use a compare function to sort the totalDifferences in numerical order
+		function sortOrder() {
+    		totalDifference.sort(function(a, b){return a - b});
+    	}
+
+    	sortOrder();
+
+    	//now, totalDifference[0] is the most compatible friend!
+
+    	// it must be displayed to the current user.  I have not been able to decipher modals,
+    	// so far. So, that is left to be done.
 
 	});
 };
