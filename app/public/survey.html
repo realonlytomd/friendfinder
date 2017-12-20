@@ -4,6 +4,8 @@
 	<title>Friend Finder Survey Page</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery.js"></script>
+
 </head>
 <body>
 
@@ -270,6 +272,22 @@
 
 				</div>
 
+				<button type="button" class="btn btn-primary submit">Submit Answers</button></a>
+
+				<br>
+
+				<hr>
+
+				<footer class="footer">
+
+					<div class="container">
+						<a href="/api/friends">API Friends List</a>
+					</div>
+
+				</footer>
+
+				<br>
+
 			</div>
 
 		</div>
@@ -277,4 +295,59 @@
 	</div>
 
 </body>
+
+<script type="text/javascript">
+	
+// the function to make the ajax call to get the other friends data
+	function runFriendsQuery() {
+
+		var currentURL = window.location.origin;
+
+		$.ajax({ url: currentURL + "/api/friends", method: "GET"})
+		.done(function(friendsData) {
+
+			console.log("URL: " + currentURL + "/api/friends");
+			console.log(friendsData);
+		});
+	}
+// run the function from above
+	runFriendsQuery();
+
+// when the submit button is clicked, get the data from the input form
+  $(".submit").on("click", function(event) {
+    event.preventDefault();
+
+    var currentUser = {
+      name: $("#userName").val().trim(),
+      photo: $("#userLink").val().trim(),
+      scores: [
+        parseInt($("input[name=qOne]:checked").val()),
+        parseInt($("input[name=qTwo]:checked").val()),
+        parseInt($("input[name=qThree]:checked").val()),
+        parseInt($("input[name=qFour]:checked").val()),
+        parseInt($("input[name=qFive]:checked").val()),
+        parseInt($("input[name=qSix]:checked").val()),
+        parseInt($("input[name=qSeven]:checked").val()),
+        parseInt($("input[name=qEight]:checked").val()),
+        parseInt($("input[name=qNine]:checked").val()),
+        parseInt($("input[name=qTen]:checked").val())
+        ]
+    };
+    console.log(currentUser);
+
+// now the post command to put the data to the server
+    var currentURL = window.location.origin;
+
+    $.post(currentURL + "/api/friends", currentUser, function(data){
+
+    });
+
+
+// clears the entry fields
+    $("#userName").val("");
+    $("#userLink").val("");
+
+  });
+
+</script>
 </html>

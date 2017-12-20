@@ -9,13 +9,16 @@ var path = require("path");
 var app = express();
 var PORT = process.env.PORT || 8080;
 
-app.get("/", function (req,res) {
-	res.send("Hello World");
-})
-
 // This sets up the Express app to handle data parsing
 app.use(bodyParser.urlencoded({ extended: false }));02
 app.use(bodyParser.json());
+
+// This points the server to the route files.
+// They give the server a map of how to respond
+// when users visit or request data from various URLs.
+
+require("./app/routing/apiRoutes")(app);
+require("./app/routing/htmlRoutes")(app);
 
 
 
