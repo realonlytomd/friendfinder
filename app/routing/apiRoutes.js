@@ -29,68 +29,62 @@ module.exports = function(app) {
 		console.log(friendsData[0].scores);
 		console.log(friendsData[1].name);
 		console.log(friendsData[1].photo);
-		//console.log(friendsData[1].scores);
-
-		// My currentUser.scores is posted here, and I know it needs to be converted to integers
-		// I've looked at JSON.parse, the array.map() function, etc.  
-		// But I have a weird extra[] in the key name scores...
-
-		// MOVING ON....
+		console.log(friendsData[1].scores);
 
 		// compare the scores of the friends list with the current user
-		// the current user is the last index of the friendsData array (.length)
+		// the current user is the last index of the friendsData array (.length - 1)
 		// so the 5 values of the scores are looped through for each array of scores
 		// of each friend (minus the last one - the current user), ... a nested for loop.
 
 		// set up 2 variables as arrays
-		// the following is commented out to allow the program to run without errors. My currentUser 
-		// array is not defined correctly at present
 
 		var difference = [];
 		var totalDifference = [];
 
-		// for (var i = 0; i < (friendsData.length  - 1); i++) {
+		for (var i = 0; i < (friendsData.length  - 1); i++) {
 
-		// 	for (var j = 0; j < scores.length; j++) {
+			for (var j = 0; j < 10; j++) {
 
-		// 		difference[j] = friendsData[i].scores[j] - friendsData[friendsData.length].scores[j];
-		// 		// get the absolute value 
-		// 		difference[j] = Math.abs(difference[j]);
+				difference[j] = friendsData[i].scores[j] - friendsData[friendsData.length - 1].scores[j];
+				// get the absolute value 
+				difference[j] = Math.abs(difference[j]);
+		
+				// then add the differences together for each friend in turn
 
-		// 		// then add the differences together for each friend in turn
-
-		// 		totalDifference[i] += difference[j];
+				totalDifference[i] = difference[j];
+			}
 				
-		// 	}
-				
-  //   	}
+    	}
 
-  //   	// now we have a totalDifference number for each corresponding friend in the friendsData array
+    	// now we have a totalDifference number for each corresponding friend in the friendsData array
 
-  //   	// we can find the lowest number using Math.min
+    	// we can find the lowest number using Math.min
+    	var resultIndex;
+    	var lowestNumber;
+		function myArrayMin(arr) {
+			return Math.min.apply(null, arr);
+		}
 
-		// function myArrayMin(arr) {
-		// 	return Math.min.apply(null, arr);
-		// }
+		lowestNumber = myArrayMin(totalDifference);
 
-		// var lowestNumber = myArrayMin(totalDifference);
+		// then use an if statement to find the corresponding index in the friendsData array.
+		for (var i = 0; i < friendsData.length; i++) {
 
-		// // then use an if statement to find the corresponding index in the friendsData array.
-		// for (var i = 0; i < friendsData.length; i++) {
+			if (totalDifference[i] === lowestNumber) {
+				resultIndex = i;
+			}
+		}
+		// ---------------------------------------------------------
+		// Our winning friend is friendsData[resultIndex]!!!!!
+		//----------------------------------------------------------
+		
+		console.log(friendsData[resultIndex].name);
+		console.log(friendsData[resultIndex].photo);
 
-		// 	if totalDifference[i] = lowestNumber {
-		// 		var resultIndex = i;
-		// 	}
-		// }
-		// // ---------------------------------------------------------
-		// // Our winning friend is friendsData[resultIndex]!!!!!
-		// //----------------------------------------------------------
-
-		// console.log(friendsData[resultIndex].name);
-		// console.log(friendsData[resultIndex].photo);
-
-    	// they must be displayed to the current user.  I have not been able to decipher modals,
-    	// so far. So, that is left to be done.
+		// 
+    	//then, that friend must be displayed to the current user. 
+    	//I found a good example of modals on W3school,
+    	//So, that is left to be done.
 
 	});
 };
