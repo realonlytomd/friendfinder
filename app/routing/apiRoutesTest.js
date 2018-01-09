@@ -105,9 +105,9 @@ module.exports = function(app) {
     	//then, that friend must be displayed to the current user. 
     	//Then send that object of the winning Friend back out to the survey page
 
-    	//res.json(winningFriend);
+    	res.json(winningFriend);
     	//try this next
-    	res.send(winningFriend.toString());
+    	//res.send(winningFriend.toString());
 
 	});
 };

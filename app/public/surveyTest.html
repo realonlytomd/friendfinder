@@ -375,15 +375,17 @@
       data : currentUser,
       contentType : 'application/json',
       type : 'POST'
-    });
+    }).done(function(data) {
+
+    
 
     // Grab the result from the AJAX post so that the winner's name and photo are displayed.
-      // $("#match-name").text(data.name);
-      // $("#match-img").attr("src", data.photo);
+      $("#match-name").text(data.name);
+      $("#match-img").attr("src", data.photo);
 
       // // Show the modal with the best match
-      // $("#results-modal").modal("toggle"); 
-
+      $("#results-modal").modal("toggle"); 
+    });
 
 
 // clears the entry fields
