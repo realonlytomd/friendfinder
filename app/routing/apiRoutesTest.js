@@ -22,14 +22,6 @@ module.exports = function(app) {
 		//console.log(req.body);
 
 		friendsData.push(req.body);
-		console.log("In POST");
-		console.log(friendsData);
-		console.log(friendsData[0].name);
-		//console.log(friendsData[0].photo);
-		console.log(friendsData[0].scores);
-		console.log(friendsData[1].name);
-		//console.log(friendsData[1].photo);
-		console.log(friendsData[1].scores);
 
 		//make an object to hold the winner to send back to survey.html
 		var winningFriend = {
@@ -57,7 +49,6 @@ module.exports = function(app) {
 				difference[j] = friendsData[i].scores[j] - friendsData[friendsData.length - 1].scores[j];
 				// get the absolute value 
 				difference[j] = Math.abs(difference[j]);
-				console.log(difference);
 
 			}
 
@@ -66,7 +57,6 @@ module.exports = function(app) {
 				return total + num;
 			}
 			totalDifference[i] = difference.reduce(getSum);
-			console.log(totalDifference);
 			// empty out the difference array before next friend
 			difference = [];
     	}
@@ -98,16 +88,14 @@ module.exports = function(app) {
 		winningFriend.photo = friendsData[resultIndex].photo;
 		winningFriend.winnerLow = lowestNumber;
 
-		console.log(winningFriend.name);
-		console.log(winningFriend.photo);
+		// console.log(winningFriend.name);
+		// console.log(winningFriend.photo);
 		
 		// 
     	//then, that friend must be displayed to the current user. 
-    	//Then send that object of the winning Friend back out to the survey page
+    	//send that object of the winning Friend back out to the survey page
 
     	res.json(winningFriend);
-    	//try this next
-    	//res.send(winningFriend.toString());
 
 	});
 };

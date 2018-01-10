@@ -2,19 +2,83 @@
 
 var friendsArray = [
 	{
-		"name":"Ahmed",
-		"photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+		"name":"Tom",
+		"photo":"https://imgpic.org/upload/images/2df63ad3-5d2c-94ed-25d9-57dc084de69a.jpg",
 		"scores":[
 			5,
-			1,
+			5,
+			5,
+			5,
+			5,
+			5,
+			5,
+			5,
+			5,
+			5
+		]
+	},
+	{
+		"name":"Thomas",
+		"photo":"https://i.pinimg.com/736x/56/c0/c9/56c0c978532358b2df0119bff4dd214e--cute-animals-quotes-funny-animals-pictures.jpg",
+		"scores":[
 			4,
+			4,
+			4,
+			4,
+			4,
+			4,
+			4,
+			4,
+			4,
+			4
+		]
+	},
+	{
+		"name":"Dan",
+		"photo":"https://static.pexels.com/photos/50577/hedgehog-animal-baby-cute-50577.jpeg",
+		"scores":[
+			3,
+			3,
+			3,
+			3,
+			3,
+			3,
+			3,
+			3,
+			3,
+			3
+		]
+	},
+	{
+		"name":"Daniel",
+		"photo":"https://lh4.googleusercontent.com/-8dlklvlBpw0/VCOxxDRUF0I/AAAAAAAAAFQ/qpMIxxZWjoo/w400-h279/Cute%2BDog.gif",
+		"scores":[
+			5,
 			4,
 			5,
-			1,
-			2,
+			4,
 			5,
 			4,
-			1
+			5,
+			4,
+			5,
+			4
+		]
+	},
+	{
+		"name":"Danny",
+		"photo":"https://i.pinimg.com/736x/6e/37/88/6e378883b61e3dd40a318666c4d410eb--elephant-drawing-ideas-baby-elephant-art.jpg",
+		"scores":[
+			5,
+			4,
+			3,
+			5,
+			4,
+			3,
+			5,
+			4,
+			3,
+			5
 		]
 	}
 ];

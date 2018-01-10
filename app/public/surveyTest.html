@@ -3,8 +3,9 @@
 <head>
 	<title>Friend Finder Survey Page</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	<script src="https://code.jquery.com/jquery.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -299,7 +300,7 @@
               </div>
               <div class="modal-body">
                 <h2 id="match-name"></h2>
-                <img id="match-img" src="" alt="">
+                <img id="match-img" src="" alt="" style="width: 100%;">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -318,41 +319,15 @@
 </body>
 
 <script type="text/javascript">
-	
-// the function to make the ajax call to get the other friends data
-	function runFriendsQuery() {
-
-		var currentURL = window.location.origin;
-
-		$.ajax({ url: currentURL + "/api/friends", method: "GET"})
-		.done(function(friendsData) {
-
-			console.log("URL: " + currentURL + "/api/friends");
-			console.log(friendsData);
-		});
-	}
-// run the function from above
-	runFriendsQuery();
 
 // when the submit button is clicked, get the data from the input form
   $(".submit").on("click", function(event) {
     event.preventDefault();
 
     var currentUser = JSON.stringify({
-    //var currentUser = ({
       name: $("#userName").val().trim(),
       photo: $("#userLink").val().trim(),
       scores: [
-        // ($("input[name=qOne]:checked").val()),
-        // ($("input[name=qTwo]:checked").val()),
-        // ($("input[name=qThree]:checked").val()),
-        // ($("input[name=qFour]:checked").val()),
-        // ($("input[name=qFive]:checked").val()),
-        // ($("input[name=qSix]:checked").val()),
-        // ($("input[name=qSeven]:checked").val()),
-        // ($("input[name=qEight]:checked").val()),
-        // ($("input[name=qNine]:checked").val()),
-        // ($("input[name=qTen]:checked").val())
         parseInt($("input[name=qOne]:checked").val()),
         parseInt($("input[name=qTwo]:checked").val()),
         parseInt($("input[name=qThree]:checked").val()),
@@ -365,26 +340,25 @@
         parseInt($("input[name=qTen]:checked").val())
         ]
       });
-    console.log(currentUser);
+    //console.log(currentUser);
 
     //  now the post command to send the data to apiRoutes.js
     var currentURL = window.location.origin;
-    //$.post(currentURL + "/api/friends", currentUser, function(data){
-     // });
     $.ajax(currentURL + "/api/friends", {
       data : currentUser,
       contentType : 'application/json',
       type : 'POST'
     }).done(function(data) {
 
-    
+      // console.log(data.name);
+      // console.log(data.photo);
 
     // Grab the result from the AJAX post so that the winner's name and photo are displayed.
       $("#match-name").text(data.name);
       $("#match-img").attr("src", data.photo);
 
       // // Show the modal with the best match
-      $("#results-modal").modal("toggle"); 
+      $("#results-modal").modal("show"); 
     });
 
 
