@@ -9,10 +9,11 @@ var path = require("path");
 var app = express();
 var PORT = process.env.PORT || 3000;
 
+app.use(express.static("app/public"));
 // This sets up the Express app to handle data parsing
 app.use(bodyParser.urlencoded({ extended: true }));02
 app.use(bodyParser.json());
-app.use(express.static("public"));
+
 
 // This points the server to the route files.
 // They give the server a map of how to respond
