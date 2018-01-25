@@ -1,0 +1,42 @@
+body {
+	background-image: url("../images/group.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+h1, h2{
+	font-family: 'Open Sans', sans-serif;
+	color: white;
+}
+
+h1 {
+	text-align: center;
+	font-size: 40px;
+}
+
+#panel-primary-border-color {
+	border-color: #98533d;
+}
+
+#panel-body-color {
+	background-color: #ecc9b8;
+}
+
+h3, h4 {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 20px;
+}
+
+#panel-heading-color {
+	background-color: #98533d;
+	border-color: #98533d;
+}
+
+#btn-color {
+	background-color: #98533d;
+	border-color: black;
+}
+
+#footer-color {
+	color: white;
+}
