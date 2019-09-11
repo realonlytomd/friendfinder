@@ -28,14 +28,86 @@ $(document).ready(function(){
       data : currentUser,
       contentType : 'application/json',
       type : 'POST'
-    }).done(function(data) {
+    }).done(function(friendsData) {
+      console.log("friendsData AFTER doing the post: ", friendsData);
 
-      // console.log(data.name);
-      // console.log(data.photo);
+      //make an object to hold the winner to send back to survey.html
+		var winningFriend = {
+			name: "",
+			photo: "",
+			winnerLow: 100
+		};
+
+		// compare the scores of the friends list with the current user
+		// the current user is the last index of the friendsData array (.length - 1)
+		// so the scores are looped through for each array of scores
+		// of each friend (minus the last one - the current user), ... a nested for loop.
+
+		// set up 2 variables as arrays
+
+		var difference = [];
+		var totalDifference = [];
+
+
+		for (var i = 0; i < (friendsData.length  - 1); i++) {
+			//console.log(friendsData[i].scores.length);
+
+			for (var j = 0; j < friendsData[i].scores.length; j++) {
+
+				difference[j] = friendsData[i].scores[j] - friendsData[friendsData.length - 1].scores[j];
+				// get the absolute value 
+				difference[j] = Math.abs(difference[j]);
+
+			}
+
+			//now add up each indeces of the difference array
+			function getSum(total, num) {
+				return total + num;
+			}
+			totalDifference[i] = difference.reduce(getSum);
+			// empty out the difference array before next friend
+			difference = [];
+    	}
+
+
+    	// now we have a totalDifference number for each corresponding friend in the friendsData array
+
+    	// we can find the lowest number using Math.min
+    	var resultIndex;
+    	var lowestNumber;
+		function myArrayMin(arr) {
+			return Math.min.apply(null, arr);
+		}
+
+		lowestNumber = myArrayMin(totalDifference);
+
+		// then use an if statement to find the corresponding index in the friendsData array.
+		for (var i = 0; i < friendsData.length - 1; i++) {
+
+			if (totalDifference[i] === lowestNumber) {
+				resultIndex = i;
+			}
+		}
+		// ---------------------------------------------------------
+		// Our winning friend is friendsData[resultIndex]!!!!!
+		//----------------------------------------------------------
+		
+		winningFriend.name = friendsData[resultIndex].name;
+		winningFriend.photo = friendsData[resultIndex].photo;
+		winningFriend.winnerLow = lowestNumber;
+
+		// console.log(winningFriend.name);
+		// console.log(winningFriend.photo);
+		
+		// 
+    	//then, that friend must be displayed to the current user. 
+    	//send that object of the winning Friend back out to the survey page
+
+    	//res.json(winningFriend);
 
     // Grab the result from the AJAX post so that the winner's name and photo are displayed.
-      $("#match-name").text(data.name);
-      $("#match-img").attr("src", data.photo);
+      $("#match-name").text(winningFriend.name);
+      $("#match-img").attr("src", winningFriend.photo);
 
       // // Show the modal with the best match
       $("#results-modal").modal("show"); 
