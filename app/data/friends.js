@@ -3,7 +3,7 @@
 var friendsArray = [
 	{
 		"name":"Tom",
-		"photo":"https://imgpic.org/upload/images/2df63ad3-5d2c-94ed-25d9-57dc084de69a.jpg",
+		"photo":"https://static.boredpanda.com/blog/wp-content/uuuploads/cute-baby-animals/cute-baby-animals-9.jpg",
 		"scores":[
 			5,
 			5,
